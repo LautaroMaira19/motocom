@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:frigobaires.com.ar)",
+      "Bash(npm install *)",
+      "Bash(vercel dev *)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(npx vercel *)",
+      "Bash(node server.js)",
+      "Bash(curl -X POST http://localhost:3000/api/chat -H 'Content-Type: application/json' -d '{\"message\":\"Hola, ¿qué servicios ofrecen?\"}')",
+      "Bash(curl -X POST http://localhost:3000/api/chat -H 'Content-Type: application/json' -d '{\"message\":\"Hola, qué servicios ofrecen?\"}')",
+      "Bash(curl -X POST http://localhost:3000/api/chat -H 'Content-Type: application/json' -d '{\"message\":\"¿Cuál es vuestro horario?\"}')",
+      "Bash(curl -X POST http://localhost:3000/api/chat -H 'Content-Type: application/json' -d '{\"message\":\"Hola\"}')",
+      "Bash(curl -X POST http://localhost:3000/api/chat -H 'Content-Type: application/json' -d '{\"message\":\"hola\"}')",
+      "Bash(node server-simple.js)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Initial commit: Motocom Moti chatbot ready for Vercel deployment *)"
+    ]
+  }
+}

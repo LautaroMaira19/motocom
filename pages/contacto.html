@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="website icon" type="png" href="../LogoMotocomchiquito.png">
+    <link rel="stylesheet" href="../style.css">
+    <title>Contacto - Motocom</title>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <a class="logo" href="../index.html">
+                <img src="../LogoMotocom.png" alt="Logo Motocom">
+            </a>
+            <nav>
+                <a href="../index.html#servicios" class="nav-link">Servicios</a>
+                <a href="../index.html#ventajas" class="nav-link">Ventajas</a>
+                <a href="../index.html#faq" class="nav-link">Preguntas</a>
+                <a href="quienessomos.html" class="nav-link">Empresa</a>
+                <a href="contacto.html" class="nav-link btn-contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="consultas">
+        <form action="https://formsubmit.co/Motocom.mdp@gmail.com" method="POST">
+            <h2 class="consultah2">Solicitar Información</h2>
+            <div class="inputclass">
+                <label for="name">Nombre Completo</label>
+                <input type="text" name="name" id="name" placeholder="Tu nombre completo" required>
+
+                <label for="email">Correo Electrónico</label>
+                <input type="email" name="email" id="email" placeholder="tu@email.com" required>
+
+                <label for="phone">Teléfono (Opcional)</label>
+                <input type="tel" name="phone" id="phone" placeholder="+54 223 XXXXXX">
+
+                <label for="asunto">Asunto</label>
+                <input type="text" name="subject" id="asunto" placeholder="¿En qué podemos ayudarte?" required>
+
+                <label for="message">Mensaje</label>
+                <textarea name="message" id="message" placeholder="Cuéntenos sobre tu proyecto o necesidad..." required></textarea>
+
+                <input class="btnconsultas" type="submit" value="Enviar Consulta">
+
+                <input type="hidden" name="_next" value="https://motocom.com.ar/pages/contacto.html">
+                <input type="hidden" name="_captcha" value="false">
+            </div>
+        </form>
+    </div>
+
+    <footer class="footerinfo">
+        <div class="footerbox">
+            <div class="box">
+                <figure>
+                    <a href="">
+                        <img src="../LogoMotocom.png" alt="Logo Motocom">
+                    </a>
+                </figure>
+            </div>
+            <div class="box">
+                <div class="info">
+                    <h2>Contactanos</h2>
+                    <p><strong>Teléfono:</strong> +54 223 XXX-XXXX</p>
+                    <p><strong>Email:</strong> Motocom.mdp@gmail.com</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="mapa-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12578.177778290321!2d-57.59914808866289!3d-37.98775945836373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9584d9396f1f02c9%3A0x65f7311395a5eb9c!2sAv.%20Col%C3%B3n%205649%2C%20B7604BLG%20Mar%20del%20Plata%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1697989544788!5m2!1ses!2sar"
+                        style="border:0; width: 100%; height: 100%;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="derechoautor">
+            <small>&copy; 2026 <b>Motocom</b> - Todos los Derechos Reservados. Refrigeración e Instalaciones Comerciales.</small>
+        </div>
+    </footer>
+</body>
+
+</html>

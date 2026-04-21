@@ -1,0 +1,19 @@
+{
+  "name": "motocom-chatbot",
+  "version": "1.0.0",
+  "description": "Chatbot Moti para Motocom",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "vercel build",
+    "start": "vercel start"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.3.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "18.x"
+  }
+}
