@@ -5,9 +5,8 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "dev": "vercel dev",
-    "build": "vercel build",
-    "start": "vercel start"
+    "start": "node server-simple.js",
+    "dev": "node server-simple.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.3.0"
