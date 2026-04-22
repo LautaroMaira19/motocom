@@ -1,3 +1,21 @@
+// Hamburger Menu
+const hamburger = document.getElementById('hamburger');
+const navbar = document.getElementById('navbar');
+
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navbar.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navbar.classList.remove('active');
+        });
+    });
+}
+
 // Chatbot Moti - Powered by Gemini
 const motiButton = document.getElementById('motiButton');
 const motiClose = document.getElementById('motiClose');
