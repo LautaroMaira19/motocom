@@ -5,8 +5,8 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "start": "node server-simple.js",
-    "dev": "node server-simple.js"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.3.0"
