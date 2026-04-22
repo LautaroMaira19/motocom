@@ -1767,28 +1767,28 @@ textarea {
     .ventajas,
     .testimonios,
     .proceso {
-        padding: 80px 20px;
+        padding: 50px 15px;
     }
 
     .section-header h2 {
-        font-size: 32px;
-        margin-bottom: 40px;
+        font-size: 26px;
+        margin-bottom: 20px;
     }
 
     .section-header p {
-        font-size: 17px;
+        font-size: 14px;
     }
 
     .stats {
-        padding: 60px 20px;
+        padding: 40px 15px;
     }
 
     .stat-number {
-        font-size: 42px;
+        font-size: 32px;
     }
 
     .stat-label {
-        font-size: 15px;
+        font-size: 13px;
     }
 
     .servicios-grid,
@@ -1796,14 +1796,33 @@ textarea {
     .testimonios-grid,
     .proceso-timeline {
         grid-template-columns: 1fr;
-        gap: 25px;
+        gap: 15px;
     }
 
     .servicio-card,
     .ventaja-item,
     .testimonio-card,
     .proceso-step {
-        padding: 30px 25px;
+        padding: 15px 12px;
+    }
+
+    .servicio-icon {
+        font-size: 32px;
+        margin-bottom: 8px;
+    }
+
+    .servicio-card h3,
+    .ventaja-item h4,
+    .proceso-step h4 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .servicio-card p,
+    .ventaja-item p,
+    .proceso-step p {
+        font-size: 13px;
+        margin-bottom: 8px;
     }
 
     .footerbox {
@@ -1884,40 +1903,64 @@ textarea {
 
     .quienessomos-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 15px;
     }
 
     .quienessomos-card {
-        padding: 20px;
+        padding: 15px;
+    }
+
+    .quienessomos-card h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .quienessomos-card p {
+        font-size: 13px;
     }
 
     .clientes {
-        padding: 60px 20px;
+        padding: 40px 15px;
+    }
+
+    .carrusel-track {
+        gap: 15px;
+        padding: 15px;
     }
 
     .cliente-logo {
-        width: 160px;
-        height: 120px;
+        width: 140px;
+        height: 100px;
+        padding: 15px;
     }
 
     .faq {
-        padding: 80px 20px;
+        padding: 50px 15px;
     }
 
     .faq-item h4 {
-        font-size: 16px;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    .faq-item p {
+        font-size: 13px;
     }
 
     .cta-main {
-        padding: 80px 20px;
+        padding: 50px 15px;
     }
 
     .cta-main h2 {
-        font-size: 30px;
+        font-size: 26px;
+    }
+
+    .cta-main p {
+        font-size: 13px;
     }
 
     .stats .container {
-        gap: 20px;
+        gap: 15px;
     }
 
     .quienessomos-card h3 {
@@ -1988,50 +2031,89 @@ textarea {
     .ventajas,
     .testimonios,
     .empresa,
-    .proceso {
-        padding: 50px 15px;
+    .proceso,
+    .faq {
+        padding: 30px 12px;
     }
 
     .section-header h2 {
-        font-size: 22px;
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .section-header p {
+        font-size: 12px;
     }
 
     .servicio-card,
-    .ventaja-item {
-        padding: 20px;
+    .ventaja-item,
+    .testimonio-card,
+    .proceso-step {
+        padding: 12px 10px;
+    }
+
+    .servicio-icon {
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+
+    .servicio-card h3,
+    .ventaja-item h4,
+    .proceso-step h4 {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+
+    .servicio-card p,
+    .ventaja-item p,
+    .proceso-step p {
+        font-size: 12px;
+        margin-bottom: 6px;
     }
 
     .stat-number {
-        font-size: 28px;
-    }
-
-    .stats .container {
-        gap: 15px;
-    }
-
-    .cta-main {
-        padding: 50px 15px;
-    }
-
-    .cta-main h2 {
         font-size: 24px;
     }
 
+    .stat-label {
+        font-size: 11px;
+    }
+
+    .stats .container {
+        gap: 10px;
+        padding: 30px 12px;
+    }
+
+    .cta-main {
+        padding: 30px 12px;
+    }
+
+    .cta-main h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
     .clientes {
-        padding: 40px 15px;
+        padding: 30px 12px;
+    }
+
+    .carrusel-track {
+        gap: 10px;
+        padding: 10px 12px;
     }
 
     .cliente-logo {
-        width: 130px;
-        height: 90px;
-    }
-
-    .faq {
-        padding: 50px 15px;
+        width: 110px;
+        height: 70px;
+        padding: 10px;
     }
 
     .faq-item h4 {
-        font-size: 14px;
+        font-size: 13px;
+    }
+
+    .faq-item p {
+        font-size: 12px;
     }
 
     form {
@@ -2050,21 +2132,22 @@ textarea {
 
     .quienessomos-grid {
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 10px;
     }
 
     .quienessomos-card {
-        padding: 15px;
+        padding: 12px 10px;
     }
 
     .quienessomos-card h3 {
-        font-size: 16px;
+        font-size: 14px;
+        margin-bottom: 6px;
     }
 
     .quienessomos-card p,
     .valores-list li,
     .razoneslist li {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .botones-flotantes {
