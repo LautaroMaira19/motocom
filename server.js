@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname), { maxAge: '1d' }));
 
 function getResponse(userMessage) {
   const message = userMessage.toLowerCase().trim();
@@ -84,6 +84,11 @@ function getResponse(userMessage) {
   return 'Entiendo tu pregunta. Para brindarte la mejor respuesta, puedo ayudarte con:\n\n• Cámaras frigoríficas y refrigeración\n• Instalaciones y montajes\n• Mantenimiento y emergencias técnicas\n• Equipamiento comercial\n• Horarios y contacto\n\nO puedes contactarnos directamente:\n📱 WhatsApp: +54 223 438-2695\n📧 motocom.mdp@gmail.com 🤔';
 }
 
+// Health check para Railway
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 // API endpoint para chat
 app.post('/api/chat', (req, res) => {
   try {
@@ -96,7 +101,7 @@ app.post('/api/chat', (req, res) => {
     const reply = getResponse(message);
     return res.json({ reply });
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error en /api/chat:', error);
     return res.status(500).json({
       reply: 'Disculpa, tuve un problema. Intenta nuevamente o contáctanos por WhatsApp al +54 223 438-2695'
     });
@@ -105,11 +110,31 @@ app.post('/api/chat', (req, res) => {
 
 // Servir index.html para rutas no encontradas
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  try {
+    res.sendFile(path.join(__dirname, 'index.html'));
+  } catch (error) {
+    console.error('Error sirviendo index.html:', error);
+    res.status(500).send('Error cargando la página');
+  }
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Error no capturado:', err);
+  res.status(500).json({ error: 'Error interno del servidor' });
 });
 
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`✅ Servidor ejecutándose en puerto ${PORT} (env.PORT=${process.env.PORT})`);
+const server = app.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ Servidor ejecutándose en puerto ${PORT}`);
   console.log(`🤖 Moti está listo`);
+});
+
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  console.log('SIGTERM recibido, cerrando servidor gracefully...');
+  server.close(() => {
+    console.log('Servidor cerrado');
+    process.exit(0);
+  });
 });
