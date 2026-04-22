@@ -1,140 +1,138 @@
-const express = require('express');
+const http = require('http');
+const fs = require('fs');
 const path = require('path');
-const app = express();
-
-app.use(express.json());
-app.use(express.static(path.join(__dirname), { maxAge: '1d' }));
+const url = require('url');
 
 function getResponse(userMessage) {
   const message = userMessage.toLowerCase().trim();
 
-  // Saludos
-  if (/^(hola|hi|hey|buenos|buenas|qué tal|q tal)/.test(message)) {
-    return '¡Hola! 👋 Bienvenido a Motocom. Soy Moti, tu asistente de refrigeración. ¿Cómo puedo ayudarte hoy? Podemos hablar sobre cámaras frigoríficas, instalaciones, mantenimiento o equipamiento comercial.';
+  if (/^(hola|hi|hey|buenos|buenas)/.test(message)) {
+    return '¡Hola! 👋 Bienvenido a Motocom. Soy Moti. ¿Cómo puedo ayudarte hoy?';
   }
 
-  // Preguntas sobre cámaras frigoríficas
-  if (/cámara|camara|frigorifico|frigorífico|refrigeracion|refrigeración|congelador|almacenamiento/.test(message)) {
-    if (/diseño|diseñar|proyecto|personalizado/.test(message)) {
-      return 'Excelente pregunta. Realizamos diseños personalizados de cámaras frigoríficas según tus necesidades específicas. Nuestro equipo técnico evalúa tu espacio y genera una propuesta detallada. ¿Cuál es tu negocio? (carnicería, restaurante, comercio, industria)';
-    }
-    return 'En Motocom diseñamos, construimos e instalamos cámaras frigoríficas de alta eficiencia. Contamos con 50+ años de experiencia en refrigeración industrial y comercial. Trabajamos con carnicerías, restaurantes, comercios, frigoríficos y más. ❄️';
+  if (/cámara|camara|frigorifico|refrigeracion/.test(message)) {
+    return 'En Motocom diseñamos, construimos e instalamos cámaras frigoríficas de alta eficiencia. Contamos con 50+ años de experiencia. ❄️';
   }
 
-  // Preguntas sobre instalación
-  if (/instalacion|instalar|montaje|montar|colocacion|colocar/.test(message)) {
-    if (/cuanto tiempo|cuanto demora|tiempo|duración/.test(message)) {
-      return 'El tiempo de instalación varía según la complejidad del proyecto. Proyectos simples toman 2-5 días, instalaciones complejas pueden tomar 1-3 semanas. Te podemos dar un cronograma exacto tras evaluar tu caso específico. 🔧';
-    }
-    return 'Realizamos instalaciones profesionales con equipo técnico certificado e internacionalmente capacitado. Cumplimos con todas las normativas de seguridad y regulaciones ambientales. ¿Es para una cámara nueva o ampliación? 🔧';
+  if (/instalacion|instalar|montaje/.test(message)) {
+    return 'Realizamos instalaciones profesionales con equipo técnico certificado. ¿Es para una cámara nueva? 🔧';
   }
 
-  // Preguntas sobre mantenimiento y emergencias
-  if (/mantenimiento|servicio|reparacion|falla|problema|emergencia|urgente|24\/7/.test(message)) {
-    if (/24|emergencia|urgente|rapido|rapida/.test(message)) {
-      return 'Contamos con servicio técnico de emergencia 24/7. Nuestro equipo responde en menos de 2 horas en el área de Mar del Plata. Para emergencias: 📱 WhatsApp: +54 223 438-2695';
-    }
-    return 'Ofrecemos programas de mantenimiento preventivo personalizado. Realizamos revisiones periódicas, limpiezas, ajustes de presión y cambios de refrigerante. También atendemos reparaciones urgentes y mantenimiento correctivo. 🔧';
+  if (/mantenimiento|reparacion|emergencia/.test(message)) {
+    return 'Ofrecemos servicio técnico 24/7. Respondemos en menos de 2 horas. WhatsApp: +54 223 438-2695 📱';
   }
 
-  // Preguntas sobre garantía
-  if (/garantia|garantía|cobertura|asegurado|asegurada|protegido/.test(message)) {
-    return 'Ofrecemos garantía integral de 12 meses en todas nuestras instalaciones (piezas + mano de obra). Disponemos extensión de cobertura hasta 36 meses según el proyecto. ¿Quieres saber más sobre algún servicio específico? ✅';
+  if (/garantia|garantía/.test(message)) {
+    return 'Ofrecemos garantía integral de 12 meses (piezas + mano de obra). Extensión hasta 36 meses disponible. ✅';
   }
 
-  // Preguntas sobre horarios
-  if (/horario|atienden|abierto|abierta|cerrado|cierra|abre/.test(message)) {
-    return '📅 **Horario de Atención:**\n• Lunes a Viernes: 08:00 - 16:00 hs\n• Sábados: 08:00 - 12:00 hs\n\n🚨 Emergencias 24/7 por WhatsApp: +54 223 438-2695';
+  if (/horario|atienden|abierto/.test(message)) {
+    return 'Horario: Lunes-Viernes 08:00-16:00 hs, Sábados 08:00-12:00 hs. Emergencias 24/7: +54 223 438-2695';
   }
 
-  // Preguntas sobre contacto
-  if (/contacto|contactar|llamar|llamada|numero|teléfono|telefono|whatsapp|email|instagram|ubicación|ubicacion/.test(message)) {
-    return '📱 **Contacta con nosotros:**\n📱 WhatsApp: +54 223 438-2695\n📧 Email: motocom.mdp@gmail.com\n📍 Ubicación: Mar del Plata, Argentina\n📱 Instagram: @motocom.ar\n\nEstamos aquí para ayudarte 24/7 😊';
+  if (/contacto|whatsapp|email|instagram/.test(message)) {
+    return 'WhatsApp: +54 223 438-2695\nEmail: motocom.mdp@gmail.com\nInstagram: @motocom.ar';
   }
 
-  // Preguntas sobre equipamiento comercial
-  if (/equipo|equipamiento|sierra|picadora|embutidora|heladera|herramientas|carniceria|carnicería|restaurante/.test(message)) {
-    if (/comprar|precio|costo|venta/.test(message)) {
-      return 'Vendemos equipamiento comercial de primera calidad: sierras, picadoras, embutidoras, heladeras, mostradores frigoríficos y más. Para ver nuestro catálogo y precios, contáctanos por WhatsApp: +54 223 438-2695 o visita nuestra sección de productos. 🛠️';
-    }
-    return 'Contamos con equipamiento profesional para carnicerías, restaurantes y comercios. Ofrecemos venta, instalación y servicio técnico. ¿Qué tipo de negocio tienes? 🛠️';
+  if (/equipo|equipamiento|sierra|picadora/.test(message)) {
+    return 'Vendemos equipamiento comercial: sierras, picadoras, embutidoras, heladeras y más. 🛠️';
   }
 
-  // Preguntas sobre experiencia
-  if (/experiencia|años|tiempo|desde|fundada|historia/.test(message)) {
-    return 'Motocom fue fundada en 1973 y cuenta con más de 50 años de experiencia en refrigeración y equipamiento comercial. Hemos servido a más de 500 clientes satisfechos en la región. ¡Somos tu socio de confianza! 🏆';
+  if (/precio|costo|presupuesto/.test(message)) {
+    return 'Los precios varían según el proyecto. Contáctanos para presupuesto personalizado: +54 223 438-2695 💰';
   }
 
-  // Preguntas sobre precios
-  if (/precio|costo|cuanto cuesta|cuanto sale|presupuesto|valor|tarifa/.test(message)) {
-    return 'Los precios varían según el alcance, complejidad y especificaciones técnicas del proyecto. Para un presupuesto personalizado y sin compromiso, contáctanos:\n📱 WhatsApp: +54 223 438-2695\n📧 Email: motocom.mdp@gmail.com 💰';
+  if (/gracias|thanks/.test(message)) {
+    return '¡De nada! Si necesitas algo más, estoy aquí. 😊';
   }
 
-  // Agradecimientos
-  if (/gracias|thanks|muchas gracias|graciass|thx/.test(message)) {
-    return '¡De nada! Es un placer ayudarte. Si tienes más preguntas o necesitas algo más, no dudes en escribir. 😊';
+  if (/adiós|adios|bye/.test(message)) {
+    return '¡Hasta luego! Que tengas un excelente día! 👋';
   }
 
-  // Despedidas
-  if (/adiós|adios|bye|chao|hasta|nos vemos|cya/.test(message)) {
-    return '¡Hasta luego! Si necesitas más ayuda, estaré aquí. ¡Que tengas un excelente día! 👋';
-  }
-
-  // Respuesta por defecto mejorada
-  return 'Entiendo tu pregunta. Para brindarte la mejor respuesta, puedo ayudarte con:\n\n• Cámaras frigoríficas y refrigeración\n• Instalaciones y montajes\n• Mantenimiento y emergencias técnicas\n• Equipamiento comercial\n• Horarios y contacto\n\nO puedes contactarnos directamente:\n📱 WhatsApp: +54 223 438-2695\n📧 motocom.mdp@gmail.com 🤔';
+  return 'Puedo ayudarte con: refrigeración, instalaciones, mantenimiento, equipamiento comercial, horarios y contacto. ¿Qué necesitas? 🤔';
 }
 
-// Health check para Railway
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
-});
+const server = http.createServer((req, res) => {
+  const parsedUrl = url.parse(req.url, true);
+  const pathname = parsedUrl.pathname;
 
-// API endpoint para chat
-app.post('/api/chat', (req, res) => {
-  try {
-    const { message } = req.body;
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    if (!message || message.trim() === '') {
-      return res.status(400).json({ reply: 'Por favor, escribe una pregunta.' });
-    }
+  if (req.method === 'OPTIONS') {
+    res.writeHead(200);
+    res.end();
+    return;
+  }
 
-    const reply = getResponse(message);
-    return res.json({ reply });
-  } catch (error) {
-    console.error('Error en /api/chat:', error);
-    return res.status(500).json({
-      reply: 'Disculpa, tuve un problema. Intenta nuevamente o contáctanos por WhatsApp al +54 223 438-2695'
+  if (pathname === '/health' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ status: 'ok' }));
+    return;
+  }
+
+  if (pathname === '/api/chat' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
     });
-  }
-});
+    req.on('end', () => {
+      try {
+        const data = JSON.parse(body);
+        const message = data.message || '';
 
-// Servir index.html para rutas no encontradas
-app.get('*', (req, res) => {
-  try {
-    res.sendFile(path.join(__dirname, 'index.html'));
-  } catch (error) {
-    console.error('Error sirviendo index.html:', error);
-    res.status(500).send('Error cargando la página');
-  }
-});
+        if (!message.trim()) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ reply: 'Por favor escribe una pregunta.' }));
+          return;
+        }
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error('Error no capturado:', err);
-  res.status(500).json({ error: 'Error interno del servidor' });
+        const reply = getResponse(message);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ reply }));
+      } catch (error) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ reply: 'Error procesando tu mensaje.' }));
+      }
+    });
+    return;
+  }
+
+  let filePath = pathname === '/' ? '/index.html' : pathname;
+  filePath = path.join(__dirname, filePath);
+
+  const extname = path.extname(filePath).toLowerCase();
+  const mimeTypes = {
+    '.html': 'text/html',
+    '.js': 'text/javascript',
+    '.css': 'text/css',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.gif': 'image/gif',
+    '.svg': 'image/svg+xml'
+  };
+  const contentType = mimeTypes[extname] || 'text/plain';
+
+  fs.readFile(filePath, (error, content) => {
+    if (error) {
+      res.writeHead(404);
+      res.end('404 Not Found');
+    } else {
+      res.writeHead(200, { 'Content-Type': contentType });
+      res.end(content);
+    }
+  });
 });
 
 const PORT = process.env.PORT || 8080;
-const server = app.listen(PORT, '0.0.0.0', () => {
-  console.log(`✅ Servidor ejecutándose en puerto ${PORT}`);
-  console.log(`🤖 Moti está listo`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ Servidor en puerto ${PORT}`);
+  console.log(`🤖 Moti listo`);
 });
 
-// Graceful shutdown
 process.on('SIGTERM', () => {
-  console.log('SIGTERM recibido, cerrando servidor gracefully...');
-  server.close(() => {
-    console.log('Servidor cerrado');
-    process.exit(0);
-  });
+  console.log('SIGTERM received');
+  server.close(() => process.exit(0));
 });
