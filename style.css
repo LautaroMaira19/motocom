@@ -1934,7 +1934,12 @@ textarea {
     .cliente-logo {
         width: 140px;
         height: 100px;
-        padding: 15px;
+        padding: 10px;
+    }
+
+    .cliente-img {
+        width: 100px;
+        height: 80px;
     }
 
     .faq {
@@ -2136,8 +2141,13 @@ textarea {
     .cliente-logo {
         width: 90px;
         height: 60px;
-        padding: 8px;
+        padding: 6px;
         border-radius: 8px;
+    }
+
+    .cliente-img {
+        width: 75px;
+        height: 50px;
     }
 
     .faq-item h4 {
