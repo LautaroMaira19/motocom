@@ -131,10 +131,8 @@ const server = http.createServer((req, res) => {
   }
 
   // Servir archivos estáticos
-  let filePath = '.' + pathname;
-  if (filePath === '.' || filePath === './') {
-    filePath = './index.html';
-  }
+  let filePath = pathname === '/' ? '/index.html' : pathname;
+  filePath = path.join(__dirname, filePath);
 
   const extname = String(path.extname(filePath)).toLowerCase();
   const mimeTypes = {
@@ -156,6 +154,7 @@ const server = http.createServer((req, res) => {
         res.writeHead(404, { 'Content-Type': 'text/html' });
         res.end('<h1>404 - Archivo no encontrado</h1>', 'utf-8');
       } else {
+        console.error('Error reading file:', filePath, error);
         res.writeHead(500);
         res.end('Error: ' + error.code);
       }
