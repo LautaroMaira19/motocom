@@ -1883,11 +1883,41 @@ textarea {
     }
 
     .quienessomos-grid {
+        grid-template-columns: 1fr;
         gap: 20px;
     }
 
     .quienessomos-card {
         padding: 20px;
+    }
+
+    .clientes {
+        padding: 60px 20px;
+    }
+
+    .cliente-logo {
+        width: 160px;
+        height: 120px;
+    }
+
+    .faq {
+        padding: 80px 20px;
+    }
+
+    .faq-item h4 {
+        font-size: 16px;
+    }
+
+    .cta-main {
+        padding: 80px 20px;
+    }
+
+    .cta-main h2 {
+        font-size: 30px;
+    }
+
+    .stats .container {
+        gap: 20px;
     }
 
     .quienessomos-card h3 {
@@ -1913,13 +1943,16 @@ textarea {
 
 @media (max-width: 480px) {
     .header-container {
-        flex-direction: column;
         gap: 12px;
         padding: 12px;
     }
 
     .logo img {
-        height: 55px;
+        height: 50px;
+    }
+
+    .hamburger {
+        margin-left: auto;
     }
 
     nav {
@@ -1972,8 +2005,33 @@ textarea {
         font-size: 28px;
     }
 
+    .stats .container {
+        gap: 15px;
+    }
+
+    .cta-main {
+        padding: 50px 15px;
+    }
+
     .cta-main h2 {
         font-size: 24px;
+    }
+
+    .clientes {
+        padding: 40px 15px;
+    }
+
+    .cliente-logo {
+        width: 130px;
+        height: 90px;
+    }
+
+    .faq {
+        padding: 50px 15px;
+    }
+
+    .faq-item h4 {
+        font-size: 14px;
     }
 
     form {
