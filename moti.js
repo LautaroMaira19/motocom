@@ -27,11 +27,13 @@ const motiMessages = document.getElementById('motiMessages');
 // Abrir/Cerrar chat
 motiButton.addEventListener('click', () => {
     motiChat.classList.add('active');
+    document.body.classList.add('moti-open');
     motiInput.focus();
 });
 
 motiClose.addEventListener('click', () => {
     motiChat.classList.remove('active');
+    document.body.classList.remove('moti-open');
 });
 
 // Estado del diagnóstico

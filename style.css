@@ -2472,9 +2472,9 @@ textarea {
     }
 
     .moti-button {
-        width: 60px;
-        height: 60px;
-        font-size: 28px;
+        width: 55px;
+        height: 55px;
+        font-size: 24px;
     }
 
     .moti-chat {
@@ -2487,5 +2487,33 @@ textarea {
         height: 100%;
         max-height: 100%;
         border-radius: 0;
+        font-size: 14px;
+    }
+
+    .moti-header {
+        padding: 14px 16px;
+    }
+
+    .moti-header h3 {
+        font-size: 15px;
+    }
+
+    .moti-header p {
+        font-size: 11px;
+    }
+
+    .moti-messages {
+        font-size: 14px;
+    }
+
+    .moti-message-bubble {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    body.moti-open .botones-flotantes {
+        display: none;
     }
 }
