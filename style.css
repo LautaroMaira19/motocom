@@ -2474,9 +2474,9 @@ textarea {
     }
 
     .moti-button {
-        width: 55px;
-        height: 55px;
-        font-size: 24px;
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
     }
 
     .moti-chat {
@@ -2492,6 +2492,7 @@ textarea {
         display: none;
         flex-direction: column;
         overflow: hidden;
+        z-index: 2000;
     }
 
     .moti-chat.active {
@@ -2499,44 +2500,57 @@ textarea {
     }
 
     .moti-header {
-        padding: 14px 16px;
+        padding: 10px 12px;
         flex-shrink: 0;
     }
 
     .moti-header h3 {
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .moti-header p {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .moti-close {
-        width: 44px;
-        height: 44px;
-        font-size: 28px;
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
     }
 
     .moti-messages {
         flex: 1;
         overflow-y: auto;
-        font-size: 14px;
+        padding: 12px;
+        font-size: 13px;
         -webkit-overflow-scrolling: touch;
     }
 
     .moti-message-bubble {
         font-size: 13px;
-        padding: 8px 12px;
+        padding: 7px 10px;
+    }
+
+    .moti-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
     }
 
     .moti-input-area {
         flex-shrink: 0;
-        padding: 10px 12px;
-        padding-bottom: max(10px, env(safe-area-inset-bottom));
+        padding: 8px 10px;
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
     }
 
     .moti-input {
         font-size: 16px;
+        padding: 8px 10px;
+    }
+
+    .moti-send {
+        padding: 8px 12px;
+        font-size: 13px;
     }
 
     body.moti-open .botones-flotantes {
