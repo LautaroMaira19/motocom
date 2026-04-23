@@ -24,16 +24,33 @@ const motiInput = document.getElementById('motiInput');
 const motiSend = document.getElementById('motiSend');
 const motiMessages = document.getElementById('motiMessages');
 
+// Ajuste de altura cuando aparece el teclado (igual a WhatsApp)
+function ajustarAltura() {
+    if (window.innerWidth > 480 || !motiChat.classList.contains('active')) return;
+    const vv = window.visualViewport;
+    motiChat.style.height = vv.height + 'px';
+    motiChat.style.top = vv.offsetTop + 'px';
+    motiMessages.scrollTop = motiMessages.scrollHeight;
+}
+
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', ajustarAltura);
+    window.visualViewport.addEventListener('scroll', ajustarAltura);
+}
+
 // Abrir/Cerrar chat
 motiButton.addEventListener('click', () => {
     motiChat.classList.add('active');
     document.body.classList.add('moti-open');
-    motiInput.focus();
+    ajustarAltura();
+    setTimeout(() => motiInput.focus(), 100);
 });
 
 motiClose.addEventListener('click', () => {
     motiChat.classList.remove('active');
     document.body.classList.remove('moti-open');
+    motiChat.style.height = '';
+    motiChat.style.top = '';
 });
 
 // Estado del diagnóstico
