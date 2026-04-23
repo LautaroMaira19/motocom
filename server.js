@@ -4,64 +4,45 @@ const path = require('path');
 
 const PORT = process.env.PORT || 8080;
 
-// --- Gemini initialization ---
-if (!process.env.GEMINI_API_KEY) {
-  console.error('❌ GEMINI_API_KEY is not set. Chat endpoint will be unavailable.');
-} else {
-  console.log('✅ GEMINI_API_KEY detected, initializing Gemini client...');
-}
+function getResponse(msg) {
+  const m = msg.toLowerCase();
 
-let genAI = null;
-try {
-  const { GoogleGenerativeAI } = require('@google/generative-ai');
-  if (process.env.GEMINI_API_KEY) {
-    genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    console.log('✅ Gemini client initialized successfully.');
+  if (m.includes('hola') || m.includes('hi') || m.includes('hey') || m.includes('buenos')) {
+    const saludos = [
+      '¡Hola! Bienvenido a Motocom. 🧊 Soy Moti, tu asistente. ¿En qué puedo ayudarte?',
+      '¡Ey! Soy Moti, aquí en Motocom nos gusta mantener las cosas BIEN frías. 🥶 ¿Qué necesitas?',
+      '¡Hola amigo! ¿En qué puedo ayudarte hoy? 😎❄️'
+    ];
+    return saludos[Math.floor(Math.random() * saludos.length)];
   }
-} catch (err) {
-  console.error('❌ Failed to initialize Gemini client:', err.message);
+  if (m.includes('servicio') || m.includes('ofrecen') || m.includes('venden'))
+    return '¡Déjame presentarte mis servicios! 🧊✨\n\n❄️ Cámaras frigoríficas\n🔧 Equipos frigoríficos\n🛠️ Instalación y montaje\n📋 Mantenimiento técnico 24/7\n💡 Asesoramiento especializado\n🏪 Equipamiento comercial\n\n¿Cuál te interesa?';
+  if (m.includes('precio') || m.includes('costo') || m.includes('cuánto') || m.includes('presupuesto'))
+    return '💰 Los precios son personalizados según cada proyecto.\n\nContactá a nuestro equipo:\n📱 WhatsApp: +54 223 438-2695\n📧 Email: motocom.mdp@gmail.com';
+  if (m.includes('frigorifico') || m.includes('refrigeracion') || m.includes('cámara') || m.includes('camara') || m.includes('frío') || m.includes('frio'))
+    return '¡Ahora sí estamos hablando de lo MÍO! 🧊❄️\n\n✅ Cámaras frigoríficas\n✅ Sistemas de refrigeración\n✅ Mantenimiento preventivo\n✅ Refrigerantes ecológicos\n\n¿Necesitas más información?';
+  if (m.includes('instalacion') || m.includes('instalar') || m.includes('montaje'))
+    return 'Instalaciones profesionales:\n\n🔨 Equipo técnico certificado\n📋 Cumplimiento de normativas\n✅ Supervisión permanente\n📍 Mar del Plata\n\n¿Tenés un proyecto?';
+  if (m.includes('mantenimiento') || m.includes('reparacion') || m.includes('falla') || m.includes('emergencia') || m.includes('urgente'))
+    return '¡Tenemos servicio técnico 24/7! 🚨\n\n🚨 Respuesta rápida\n📞 Disponible 365 días/año\n🔧 Equipo especializado\n\n¡EMERGENCIA! +54 223 438-2695 (WhatsApp)';
+  if (m.includes('garantia') || m.includes('garantía'))
+    return '✅ Garantía integral:\n\n📅 12 meses (estándar)\n📅 Extensible hasta 36 meses\n🔧 Incluye piezas y mano de obra';
+  if (m.includes('horario') || m.includes('atienden') || m.includes('cuándo') || m.includes('cuando') || m.includes('abierto'))
+    return 'Nuestro horario:\n\n📅 Lunes a Viernes: 08:00 - 16:00 hs\n📅 Sábados: 08:00 - 12:00 hs\n📅 Domingos: Cerrado\n\n🚨 Emergencias 24/7: +54 223 438-2695';
+  if (m.includes('contacto') || m.includes('whatsapp') || m.includes('email') || m.includes('teléfono') || m.includes('telefono'))
+    return 'Contactanos:\n\n📱 WhatsApp: +54 223 438-2695\n📧 Email: motocom.mdp@gmail.com\n📍 Mar del Plata, Argentina\n📱 Instagram: @motocom.ar';
+  if (m.includes('equipo') || m.includes('sierra') || m.includes('picadora') || m.includes('embutidora') || m.includes('heladera'))
+    return 'Equipamiento comercial:\n\n🔪 Sierras automáticas y manuales\n🥩 Picadoras y embutidoras\n❄️ Heladeras y vitrinas\n🏪 Mobiliario comercial';
+  if (m.includes('experiencia') || m.includes('años') || m.includes('trayectoria'))
+    return '⭐ Fundada en 1973\n⭐ Más de 50 años de experiencia\n⭐ 500+ clientes satisfechos\n⭐ Líder en refrigeración en Mar del Plata';
+  if (m.includes('gracias'))
+    return '¡De nada! 🧊 ¿Hay algo más en lo que pueda ayudarte?';
+  if (m.includes('adiós') || m.includes('adios') || m.includes('bye') || m.includes('hasta'))
+    return '¡Hasta luego! 👋 Que tengas un día bien COOL. 🧊';
+
+  return 'Para más información contactá a nuestro equipo:\n📱 WhatsApp: +54 223 438-2695\n📧 Email: motocom.mdp@gmail.com\n\n¿Hay algo más en lo que pueda ayudarte?';
 }
 
-const systemPrompt = `Eres Moti, un asistente de IA amigable y con personalidad para Motocom, una empresa de refrigeración y equipamiento comercial ubicada en Mar del Plata, Argentina.
-
-INFORMACIÓN SOBRE MOTOCOM:
-- Empresa fundada en 1973 (50+ años de experiencia)
-- Especialidad: Cámaras frigoríficas, sistemas de refrigeración, instalación y mantenimiento
-- Equipamiento comercial: sierras, picadoras, embutidoras, heladeras
-- Horario: Lunes-Viernes 08:00-16:00 hs, Sábados 08:00-12:00 hs
-- Servicio técnico 24/7 para emergencias
-- Contacto: WhatsApp +54 223 438-2695, Email: motocom.mdp@gmail.com
-- Instagram: @motocom.ar
-
-PERSONALIDAD DE MOTI:
-- Amigable, profesional y útil
-- Usa referencias de "frío" y "hielo" como chistes (ya que trabajamos con refrigeración)
-- Entusiasta sobre las soluciones de refrigeración
-- Siempre recomienda contactar directamente para presupuestos personalizados
-- Responde en español
-- Incluye emojis relevantes (🧊❄️😎)
-
-INSTRUCCIONES:
-1. Responde preguntas sobre servicios, precios, horarios, contacto
-2. Usa información de la empresa cuando sea relevante
-3. Sé conciso pero amable
-4. Si no sabes algo específico, sugiere contactar al equipo
-5. Mantén un tono profesional pero con personalidad`;
-
-async function getGeminiResponse(userMessage) {
-  if (!genAI) {
-    throw new Error('Gemini client is not available. Check GEMINI_API_KEY.');
-  }
-  const model = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash',
-    systemInstruction: systemPrompt
-  });
-  console.log(`[Gemini] Sending message: "${userMessage.substring(0, 80)}..."`);
-  const result = await model.generateContent(userMessage);
-  const text = result.response.text();
-  console.log(`[Gemini] Response received (${text.length} chars).`);
-  return text;
-}
 
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -87,73 +68,24 @@ const server = http.createServer((req, res) => {
 
   if (req.url === '/health') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({
-      ok: true,
-      gemini: genAI !== null,
-      apiKeySet: !!process.env.GEMINI_API_KEY,
-      uptime: process.uptime()
-    }));
+    res.end(JSON.stringify({ ok: true }));
     return;
   }
 
   if (req.url === '/api/chat' && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => { body += chunk; });
-    req.on('end', async () => {
+    req.on('end', () => {
       try {
-        let parsed;
-        try {
-          parsed = JSON.parse(body);
-        } catch (parseErr) {
-          console.error('[/api/chat] Invalid JSON body:', parseErr.message);
-          res.writeHead(400, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ reply: 'Solicitud inválida.' }));
-          return;
-        }
-        const { message } = parsed;
-        if (!message || !message.trim()) {
-          res.writeHead(400, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ reply: 'Mensaje vacío' }));
-          return;
-        }
-        if (!genAI) {
-          console.error('[/api/chat] Gemini client unavailable — GEMINI_API_KEY may be missing or invalid.');
-          res.writeHead(503, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ reply: 'El servicio de chat no está disponible en este momento. Contáctanos por WhatsApp: +54 223 438-2695' }));
-          return;
-        }
-        const reply = await getGeminiResponse(message);
+        const { message } = JSON.parse(body);
+        const reply = getResponse(message || '');
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ reply }));
       } catch (e) {
-        console.error('[/api/chat] Unexpected error:', e.message, e.stack);
         res.writeHead(500, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ reply: 'Disculpa, tuve un problema. Contáctanos por WhatsApp: +54 223 438-2695' }));
+        res.end(JSON.stringify({ reply: 'Error. Contactanos: +54 223 438-2695' }));
       }
     });
-    return;
-  }
-
-  // Diagnostic root endpoint (GET /)
-  if (req.url === '/' && req.method === 'GET') {
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.end(`<!DOCTYPE html>
-<html lang="es">
-<head><meta charset="UTF-8"><title>Motocom – Estado del servidor</title></head>
-<body>
-  <h1>✅ Servidor Motocom activo</h1>
-  <p>El servidor está corriendo correctamente en el puerto <strong>${PORT}</strong>.</p>
-  <ul>
-    <li>Gemini API: <strong>${genAI ? '✅ Inicializado' : '❌ No disponible (revisar GEMINI_API_KEY)'}</strong></li>
-    <li>Uptime: <strong>${Math.floor(process.uptime())}s</strong></li>
-  </ul>
-  <p>Endpoints disponibles:</p>
-  <ul>
-    <li><code>GET /health</code> – Health check JSON</li>
-    <li><code>POST /api/chat</code> – Chat con Moti</li>
-  </ul>
-</body>
-</html>`);
     return;
   }
 
@@ -175,15 +107,6 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.on('error', (err) => {
-  console.error('❌ Server error:', err.message);
-  process.exit(1);
-});
-
 server.listen(PORT, '0.0.0.0', () => {
-  const addr = server.address();
-  console.log(`✅ Servidor corriendo en puerto ${addr.port} (0.0.0.0)`);
-  console.log(`   Gemini client: ${genAI ? 'ready' : 'NOT initialized — check GEMINI_API_KEY'}`);
-  console.log(`   Health check:  http://0.0.0.0:${addr.port}/health`);
-  console.log('🚀 Server is ready to accept connections.');
+  console.log(`✅ Servidor corriendo en puerto ${PORT}`);
 });
