@@ -35,6 +35,8 @@ function getResponse(msg) {
     return 'Equipamiento comercial:\n\n🔪 Sierras automáticas y manuales\n🥩 Picadoras y embutidoras\n❄️ Heladeras y vitrinas\n🏪 Mobiliario comercial';
   if (m.includes('experiencia') || m.includes('años') || m.includes('trayectoria'))
     return '⭐ Fundada en 1973\n⭐ Más de 50 años de experiencia\n⭐ 500+ clientes satisfechos\n⭐ Líder en refrigeración en Mar del Plata';
+  if (m.includes('necesito ayuda') || m.includes('ayuda') || m.includes('ayudar') || m.includes('qué hacen') || m.includes('que hacen'))
+    return '¡Estoy acá para ayudarte! 🧊 Contame qué está pasando.\n\nPuedo orientarte sobre:\n\n🔧 Problemas con tu equipo de refrigeración\n📋 Servicios e instalaciones\n💰 Presupuestos\n🕐 Horarios de atención\n📞 Datos de contacto\n\n¿Por dónde empezamos?';
   if (m.includes('gracias'))
     return '¡De nada! 🧊 ¿Hay algo más en lo que pueda ayudarte?';
   if (m.includes('adiós') || m.includes('adios') || m.includes('bye') || m.includes('hasta'))
