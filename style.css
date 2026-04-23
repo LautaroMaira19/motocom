@@ -2484,14 +2484,20 @@ textarea {
         right: 0;
         bottom: 0;
         width: 100%;
-        height: 100%;
-        max-height: 100%;
+        height: 100dvh;
+        max-height: 100dvh;
         border-radius: 0;
-        font-size: 14px;
+        display: none;
+        flex-direction: column;
+    }
+
+    .moti-chat.active {
+        display: flex;
     }
 
     .moti-header {
         padding: 14px 16px;
+        flex-shrink: 0;
     }
 
     .moti-header h3 {
@@ -2502,17 +2508,34 @@ textarea {
         font-size: 11px;
     }
 
+    .moti-close {
+        width: 44px;
+        height: 44px;
+        font-size: 28px;
+    }
+
     .moti-messages {
+        flex: 1;
+        overflow-y: auto;
         font-size: 14px;
+        -webkit-overflow-scrolling: touch;
     }
 
     .moti-message-bubble {
         font-size: 13px;
         padding: 8px 12px;
     }
-}
 
-@media (max-width: 480px) {
+    .moti-input-area {
+        flex-shrink: 0;
+        padding: 10px 12px;
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+
+    .moti-input {
+        font-size: 16px;
+    }
+
     body.moti-open .botones-flotantes {
         display: none;
     }
