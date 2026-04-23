@@ -34,6 +34,44 @@ motiClose.addEventListener('click', () => {
     motiChat.classList.remove('active');
 });
 
+// Estado del diagnóstico
+let diagnostico = null;
+
+// Flujos de diagnóstico
+const flujos = {
+    no_enfria: {
+        pregunta: '🔍 Vamos a diagnosticar el problema. ¿El evaporador (la parte de atrás adentro de la cámara) tiene mucho hielo acumulado?',
+        respuestas: {
+            si: '🧊 Posiblemente el evaporador está bloqueado por hielo, lo que impide la circulación de aire frío.\n\n✅ Sugerencia:\n1. Desconectá el equipo y dejá que ese hielo se descongele completamente\n2. Una vez descongelado, probá hacer andar solo los ventiladores para verificar que el aire circule bien\n3. Si el problema persiste luego de descongelar, puede haber una falla en el sistema de desescarche\n\n📞 ¿Querés que un técnico lo revise? Llamanos al +54 223 438-2695',
+            no: '🤔 Entendido. El problema puede ser otro.\n\n¿Notás alguno de estos síntomas?\n- El compresor no arranca (silencio total)\n- El compresor arranca pero no enfría\n- Hay ruidos extraños\n\nContanos más para ayudarte mejor, o llamanos directo al +54 223 438-2695 🔧'
+        }
+    }
+};
+
+function detectarProblema(msg) {
+    const m = msg.toLowerCase();
+    if (m.includes('no enfr') || m.includes('no esta enfriando') || m.includes('no está enfriando') ||
+        m.includes('perdio el frio') || m.includes('perdió el frío') || m.includes('no tiene frio') ||
+        m.includes('no tiene frío') || m.includes('caliente') || m.includes('no funciona') ||
+        m.includes('falla') || m.includes('problema') || m.includes('roto') || m.includes('rota')) {
+        return 'no_enfria';
+    }
+    return null;
+}
+
+function esRespuestaAfirmativa(msg) {
+    const m = msg.toLowerCase().trim();
+    return m === 'si' || m === 'sí' || m === 'yes' || m === 's' ||
+           m.startsWith('si,') || m.startsWith('sí,') || m.includes('tiene hielo') ||
+           m.includes('hay hielo') || m.includes('mucho hielo') || m.includes('si tiene');
+}
+
+function esRespuestaNegativa(msg) {
+    const m = msg.toLowerCase().trim();
+    return m === 'no' || m === 'nope' || m === 'n' ||
+           m.startsWith('no,') || m.includes('no tiene') || m.includes('no hay');
+}
+
 // Enviar mensaje
 motiSend.addEventListener('click', sendMessage);
 motiInput.addEventListener('keypress', (e) => {
@@ -47,35 +85,56 @@ async function sendMessage() {
     const message = motiInput.value.trim();
     if (!message) return;
 
-    // Agregar mensaje del usuario
     addMessage(message, 'user');
     motiInput.value = '';
-
-    // Mostrar indicador de escritura
     showTyping();
 
+    // Si hay un diagnóstico activo, procesar la respuesta localmente
+    if (diagnostico) {
+        const flujo = flujos[diagnostico];
+        let reply;
+
+        if (esRespuestaAfirmativa(message)) {
+            reply = flujo.respuestas.si;
+            diagnostico = null;
+        } else if (esRespuestaNegativa(message)) {
+            reply = flujo.respuestas.no;
+            diagnostico = null;
+        } else {
+            reply = '¿Podés responder con **sí** o **no**? ' + flujo.pregunta;
+        }
+
+        setTimeout(() => {
+            removeTyping();
+            addMessage(reply, 'bot');
+        }, 600);
+        return;
+    }
+
+    // Detectar si el usuario describe un problema antes de ir al backend
+    const problema = detectarProblema(message);
+    if (problema) {
+        diagnostico = problema;
+        setTimeout(() => {
+            removeTyping();
+            addMessage(flujos[problema].pregunta, 'bot');
+        }, 600);
+        return;
+    }
+
+    // Consulta normal al backend
     try {
-        // Enviar al backend
         const response = await fetch('/api/chat', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ message: message })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
         });
-
         const data = await response.json();
         removeTyping();
-
-        if (data && data.reply) {
-            addMessage(data.reply, 'bot');
-        } else {
-            addMessage('No entendí tu pregunta. ¿Puedes intentar de otra forma?', 'bot');
-        }
+        addMessage(data.reply || 'No entendí tu pregunta. ¿Podés intentar de otra forma?', 'bot');
     } catch (error) {
-        console.error('Error completo:', error);
         removeTyping();
-        addMessage('Disculpa, tuve un problema. Intenta nuevamente o contáctanos por WhatsApp al +54 223 438-2695', 'bot');
+        addMessage('Disculpa, tuve un problema. Contactanos por WhatsApp: +54 223 438-2695', 'bot');
     }
 }
 
