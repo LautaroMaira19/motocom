@@ -37,13 +37,15 @@ motiClose.addEventListener('click', () => {
 // Estado del diagnóstico
 let diagnostico = null;
 
+const DISCLAIMER = '\n\n⚠️ Aclaración: Esta es una orientación general. Motocom no se responsabiliza por daños derivados de acciones realizadas sin la supervisión de un técnico. Ante cualquier duda, lo más seguro es llamarnos: +54 223 438-2695';
+
 // Flujos de diagnóstico
 const flujos = {
     no_enfria: {
-        pregunta: '🔍 Vamos a diagnosticar el problema. ¿El evaporador (la parte de atrás adentro de la cámara) tiene mucho hielo acumulado?',
+        pregunta: '🔍 Vamos a orientarte sobre el problema. ¿El evaporador (la parte de atrás adentro de la cámara) tiene mucho hielo acumulado?',
         respuestas: {
-            si: '🧊 Posiblemente el evaporador está bloqueado por hielo, lo que impide la circulación de aire frío.\n\n✅ Sugerencia:\n1. Desconectá el equipo y dejá que ese hielo se descongele completamente\n2. Una vez descongelado, probá hacer andar solo los ventiladores para verificar que el aire circule bien\n3. Si el problema persiste luego de descongelar, puede haber una falla en el sistema de desescarche\n\n📞 ¿Querés que un técnico lo revise? Llamanos al +54 223 438-2695',
-            no: '🤔 Entendido. El problema puede ser otro.\n\n¿Notás alguno de estos síntomas?\n- El compresor no arranca (silencio total)\n- El compresor arranca pero no enfría\n- Hay ruidos extraños\n\nContanos más para ayudarte mejor, o llamanos directo al +54 223 438-2695 🔧'
+            si: '🧊 Es posible que el evaporador esté bloqueado por hielo, lo que podría estar impidiendo la circulación de aire frío. Esto es solo una posibilidad — el diagnóstico definitivo lo tiene que hacer un técnico.\n\n💡 Orientación general (solo si se siente seguro haciéndolo):\n1. Apagar el equipo desde el interruptor principal\n2. Dejar que el hielo se descongele de forma natural, sin usar elementos para golpear o raspar\n3. Una vez descongelado, si lo desea puede encender solo los ventiladores para ver si el aire circula\n\n🔧 Lo más recomendable es que un técnico revise el sistema de desescarche para evitar que el problema se repita.' + DISCLAIMER,
+            no: '🤔 Entendido. Puede haber varias causas posibles, pero para un diagnóstico correcto es importante que un técnico revise el equipo en persona.\n\nPara que podamos orientarte mejor: ¿notás que el compresor hace ruido o está en silencio total?' + DISCLAIMER
         }
     }
 };
