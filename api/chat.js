@@ -10,7 +10,7 @@ INFORMACIÓN SOBRE MOTOCOM:
 - Equipamiento comercial: sierras, picadoras, embutidoras, heladeras
 - Horario: Lunes-Viernes 08:00-16:00 hs, Sábados 08:00-12:00 hs
 - Servicio técnico 24/7 para emergencias
-- Contacto: WhatsApp +54 223 438-2695, Email: motocom.mdp@gmail.com
+- Contacto: WhatsApp +54 223 438-2695, Email: info@motocom.com
 - Instagram: @motocom.ar
 
 PERSONALIDAD DE MOTI:
@@ -46,7 +46,7 @@ async function getResponse(userMessage) {
     return response.text();
   } catch (error) {
     console.error('Gemini Error:', error);
-    return 'Disculpa, tuve un problema procesando tu mensaje. Por favor, contáctanos directamente:\n📱 WhatsApp: +54 223 438-2695\n📧 Email: motocom.mdp@gmail.com';
+    return 'Disculpa, tuve un problema procesando tu mensaje. Por favor, contáctanos directamente:\n📱 WhatsApp: +54 223 438-2695\n📧 Email: info@motocom.com';
   }
 }
 

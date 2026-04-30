@@ -18,7 +18,7 @@ function getResponse(msg) {
   if (m.includes('servicio') || m.includes('ofrecen') || m.includes('venden'))
     return '¡Déjame presentarte mis servicios! 🧊✨\n\n❄️ Cámaras frigoríficas\n🔧 Equipos frigoríficos\n🛠️ Instalación y montaje\n📋 Mantenimiento técnico 24/7\n💡 Asesoramiento especializado\n🏪 Equipamiento comercial\n\n¿Cuál te interesa?';
   if (m.includes('precio') || m.includes('costo') || m.includes('cuánto') || m.includes('presupuesto'))
-    return '💰 Los precios son personalizados según cada proyecto.\n\nContactá a nuestro equipo:\n📱 WhatsApp: +542234382695\n📧 Email: motocom.mdp@gmail.com';
+    return '💰 Los precios son personalizados según cada proyecto.\n\nContactá a nuestro equipo:\n📱 WhatsApp: +542234382695\n📧 Email: info@motocom.com';
   if (m.includes('frigorifico') || m.includes('refrigeracion') || m.includes('cámara') || m.includes('camara') || m.includes('frío') || m.includes('frio'))
     return '¡Ahora sí estamos hablando de lo MÍO! 🧊❄️\n\n✅ Cámaras frigoríficas\n✅ Sistemas de refrigeración\n✅ Mantenimiento preventivo\n✅ Refrigerantes ecológicos\n\n¿Necesitas más información?';
   if (m.includes('instalacion') || m.includes('instalar') || m.includes('montaje'))
@@ -30,7 +30,7 @@ function getResponse(msg) {
   if (m.includes('horario') || m.includes('atienden') || m.includes('cuándo') || m.includes('cuando') || m.includes('abierto'))
     return 'Nuestro horario:\n\n📅 Lunes a Viernes: 08:00 - 16:00 hs\n📅 Sábados: 08:00 - 12:00 hs\n📅 Domingos: Cerrado\n\n🚨 Emergencias 24/7: +542234382695';
   if (m.includes('contacto') || m.includes('whatsapp') || m.includes('email') || m.includes('teléfono') || m.includes('telefono'))
-    return 'Contactanos:\n\n📱 WhatsApp: +542234382695\n📧 Email: motocom.mdp@gmail.com\n📍 Mar del Plata, Argentina\n📱 Instagram: @motocom.ar';
+    return 'Contactanos:\n\n📱 WhatsApp: +542234382695\n📧 Email: info@motocom.com\n📍 Mar del Plata, Argentina\n📱 Instagram: @motocom.ar';
   if (m.includes('equipo') || m.includes('sierra') || m.includes('picadora') || m.includes('embutidora') || m.includes('heladera'))
     return 'Equipamiento comercial:\n\n🔪 Sierras automáticas y manuales\n🥩 Picadoras y embutidoras\n❄️ Heladeras y vitrinas\n🏪 Mobiliario comercial';
   if (m.includes('experiencia') || m.includes('años') || m.includes('trayectoria'))
@@ -42,7 +42,7 @@ function getResponse(msg) {
   if (m.includes('adiós') || m.includes('adios') || m.includes('bye') || m.includes('hasta'))
     return '¡Hasta luego! 👋 Que tengas un día bien COOL. 🧊';
 
-  return 'Para más información contactá a nuestro equipo:\n📱 WhatsApp: +542234382695\n📧 Email: motocom.mdp@gmail.com\n\n¿Hay algo más en lo que pueda ayudarte?';
+  return 'Para más información contactá a nuestro equipo:\n📱 WhatsApp: +542234382695\n📧 Email: info@motocom.com\n\n¿Hay algo más en lo que pueda ayudarte?';
 }
 
 
