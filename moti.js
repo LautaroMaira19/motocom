@@ -56,7 +56,7 @@ motiClose.addEventListener('click', () => {
 // Estado del diagnóstico
 let diagnostico = null;
 
-const DISCLAIMER = '\n\n⚠️ Aclaración: Esta es una orientación general. Motocom no se responsabiliza por daños derivados de acciones realizadas sin la supervisión de un técnico. Ante cualquier duda, lo más seguro es llamarnos: +54 223 438-2695';
+const DISCLAIMER = '\n\n⚠️ Aclaración: Esta es una orientación general. Motocom no se responsabiliza por daños derivados de acciones realizadas sin la supervisión de un técnico. Ante cualquier duda, lo más seguro es llamarnos: +542234382695';
 
 // Flujos de diagnóstico
 const flujos = {
@@ -155,7 +155,7 @@ async function sendMessage() {
         addMessage(data.reply || 'No entendí tu pregunta. ¿Podés intentar de otra forma?', 'bot');
     } catch (error) {
         removeTyping();
-        addMessage('Disculpa, tuve un problema. Contactanos por WhatsApp: +54 223 438-2695', 'bot');
+        addMessage('Disculpa, tuve un problema. Contactanos por WhatsApp: +542234382695', 'bot');
     }
 }
 
