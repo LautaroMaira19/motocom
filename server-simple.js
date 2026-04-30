@@ -19,7 +19,7 @@ function getResponse(msg) {
   }
 
   if (m.includes('precio') || m.includes('costo') || m.includes('cuánto') || m.includes('presupuesto')) {
-    return '💰 ¡Ah, la pregunta más fría del siglo!\n\nComo dice el refrán: "El frío está para echarse un cable" 😎❄️\n\nLos precios son más frescos cuando son personalizados. Cada negocio tiene sus necesidades frigoríficas únicas. Contacta con nuestro equipo y te haremos un presupuesto tan COOL que no te lo creerás:\n\n📱 WhatsApp: +54 223 438-2695\n📧 Email: info@motocom.com\n\n(Prometo que el presupuesto no congelará tu billetera 😄)';
+    return '💰 ¡Ah, la pregunta más fría del siglo!\n\nComo dice el refrán: "El frío está para echarse un cable" 😎❄️\n\nLos precios son más frescos cuando son personalizados. Cada negocio tiene sus necesidades frigoríficas únicas. Contacta con nuestro equipo y te haremos un presupuesto tan COOL que no te lo creerás:\n\n📱 WhatsApp: +54 223 438-2695\n📧 Email: info@motocom.com.ar\n\n(Prometo que el presupuesto no congelará tu billetera 😄)';
   }
 
   if (m.includes('frigorifico') || m.includes('refrigeracion') || m.includes('cámara') || m.includes('camara') || m.includes('frío') || m.includes('frio')) {
@@ -43,7 +43,7 @@ function getResponse(msg) {
   }
 
   if (m.includes('contacto') || m.includes('contactar') || m.includes('whatsapp') || m.includes('email') || m.includes('teléfono') || m.includes('telefono')) {
-    return 'Contactanos:\n\n📱 WhatsApp: +54 223 438-2695\n📧 Email: info@motocom.com\n📍 Mar del Plata, Argentina\n📱 Instagram: @motocom.ar';
+    return 'Contactanos:\n\n📱 WhatsApp: +54 223 438-2695\n📧 Email: info@motocom.com.ar\n📍 Mar del Plata, Argentina\n📱 Instagram: @motocom.ar';
   }
 
   if (m.includes('equipo') || m.includes('equipamiento') || m.includes('sierra') || m.includes('picadora') || m.includes('embutidora') || m.includes('heladera')) {
@@ -62,7 +62,7 @@ function getResponse(msg) {
     return '¡Hasta luego! 👋 Recuerda: mantente FRESCO. 😎❄️ ¡Que tengas un día bien COOL! 🧊';
   }
 
-  return 'Entiendo tu pregunta. 🤔 Mira, soy un chatbot tan frío que a veces no lo capto todo 😅\n\nContacta directamente con nuestro equipo de EXPERTOS EN FRÍO:\n📱 WhatsApp: +54 223 438-2695\n📧 Email: info@motocom.com\n\n¿Hay algo más que necesites congelar... digo, resolver? 😄';
+  return 'Entiendo tu pregunta. 🤔 Mira, soy un chatbot tan frío que a veces no lo capto todo 😅\n\nContacta directamente con nuestro equipo de EXPERTOS EN FRÍO:\n📱 WhatsApp: +54 223 438-2695\n📧 Email: info@motocom.com.ar\n\n¿Hay algo más que necesites congelar... digo, resolver? 😄';
 }
 
 const server = http.createServer((req, res) => {
