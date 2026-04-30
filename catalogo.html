@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - Motocom</title>
+    <meta name="description" content="Catálogo de productos Motocom: cámaras frigoríficas, heladeras exhibidoras y equipamiento comercial en Mar del Plata.">
+    <link rel="icon" type="image/png" href="LogoMotocomchiquito.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="catalogo.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <a class="logo" href="index.html">
+                <img src="LogoMotocom.png" alt="Motocom">
+            </a>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="navbar" class="navbar">
+                <a href="index.html#servicios" class="nav-link">Servicios</a>
+                <a href="index.html#ventajas" class="nav-link">Ventajas</a>
+                <a href="index.html#faq" class="nav-link">Preguntas</a>
+                <a href="index.html#empresa" class="nav-link">Empresa</a>
+                <a href="pages/contacto.html" class="nav-link btn-contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO CATÁLOGO -->
+        <section class="catalogo-hero">
+            <div class="container">
+                <h1>Catálogo de Productos</h1>
+                <p>Soluciones de refrigeración y equipamiento para tu negocio</p>
+            </div>
+        </section>
+
+        <!-- FILTROS -->
+        <section class="catalogo-filtros">
+            <div class="container">
+                <button class="filtro-btn active" data-categoria="todos">Todos</button>
+                <button class="filtro-btn" data-categoria="camaras">Cámaras Frigoríficas</button>
+                <button class="filtro-btn" data-categoria="heladeras">Heladeras Exhibidoras</button>
+                <button class="filtro-btn" data-categoria="equipamiento">Equipamiento Comercial</button>
+            </div>
+        </section>
+
+        <!-- GRILLA DE PRODUCTOS -->
+        <section class="catalogo-grilla">
+            <div class="container">
+                <div class="productos-grid" id="productosGrid">
+
+                    <!-- Cámaras Frigoríficas -->
+                    <div class="producto-card" data-categoria="camaras">
+                        <div class="producto-img">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <div class="producto-info">
+                            <span class="producto-categoria">Cámaras Frigoríficas</span>
+                            <h3>Cámara Frigorífica Industrial</h3>
+                            <p>Cámara de conservación de alta capacidad, ideal para carnicerías, restaurantes y locales gastronómicos.</p>
+                            <a href="pages/contacto.html" class="btn-consultar">Consultar <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="producto-card" data-categoria="camaras">
+                        <div class="producto-img">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <div class="producto-info">
+                            <span class="producto-categoria">Cámaras Frigoríficas</span>
+                            <h3>Cámara de Congelación</h3>
+                            <p>Cámara de congelación profunda para conservación de productos perecederos a largo plazo.</p>
+                            <a href="pages/contacto.html" class="btn-consultar">Consultar <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="producto-card" data-categoria="camaras">
+                        <div class="producto-img">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <div class="producto-info">
+                            <span class="producto-categoria">Cámaras Frigoríficas</span>
+                            <h3>Cámara Frigorífica Modular</h3>
+                            <p>Sistema modular adaptable a cualquier espacio, con instalación rápida y eficiente.</p>
+                            <a href="pages/contacto.html" class="btn-consultar">Consultar <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Heladeras Exhibidoras -->
+                    <div class="producto-card" data-categoria="heladeras">
+                        <div class="producto-img">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="producto-info">
+                            <span class="producto-categoria">Heladeras Exhibidoras</span>
+                            <h3>Exhibidora Vertical</h3>
+                            <p>Exhibidora vertical de puertas de vidrio, ideal para bebidas y productos refrigerados en comercios.</p>
+                            <a href="pages/contacto.html" class="btn-consultar">Consultar <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="producto-card" data-categoria="heladeras">
+                        <div class="producto-img">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="producto-info">
+                            <span class="producto-categoria">Heladeras Exhibidoras</span>
+                            <h3>Vitrina Refrigerada</h3>
+                            <p>Vitrina horizontal para exposición de carnes, fiambres y productos frescos con iluminación LED.</p>
+                            <a href="pages/contacto.html" class="btn-consultar">Consultar <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="producto-card" data-categoria="heladeras">
+                        <div class="producto-img">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <div class="producto-info">
+                            <span class="producto-categoria">Heladeras Exhibidoras</span>
+                            <h3>Isla Congeladora</h3>
+                            <p>Isla de congelación abierta para supermercados y grandes superficies, alta capacidad.</p>
+                            <a href="pages/contacto.html" class="btn-consultar">Consultar <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Equipamiento Comercial -->
+                    <div class="producto-card" data-categoria="equipamiento">
+                        <div class="producto-img">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="producto-info">
+                            <span class="producto-categoria">Equipamiento Comercial</span>
+                            <h3>Sierra Carnicera</h3>
+                            <p>Sierra para hueso de uso profesional, acero inoxidable, fácil limpieza y mantenimiento.</p>
+                            <a href="pages/contacto.html" class="btn-consultar">Consultar <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="producto-card" data-categoria="equipamiento">
+                        <div class="producto-img">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="producto-info">
+                            <span class="producto-categoria">Equipamiento Comercial</span>
+                            <h3>Picadora Industrial</h3>
+                            <p>Picadora de carne de alta capacidad para carnicerías y negocios gastronómicos.</p>
+                            <a href="pages/contacto.html" class="btn-consultar">Consultar <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="producto-card" data-categoria="equipamiento">
+                        <div class="producto-img">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="producto-info">
+                            <span class="producto-categoria">Equipamiento Comercial</span>
+                            <h3>Embutidora</h3>
+                            <p>Embutidora manual y automática para producción de embutidos artesanales e industriales.</p>
+                            <a href="pages/contacto.html" class="btn-consultar">Consultar <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="paginacion" class="paginacion"></div>
+        </section>
+    </main>
+
+    <footer class="footerinfo">
+        <div class="footerbox">
+            <div class="box">
+                <figure>
+                    <a href="index.html">
+                        <img src="LogoMotocom.png" alt="Logo Motocom">
+                    </a>
+                </figure>
+            </div>
+            <div class="box">
+                <div class="info">
+                    <h2>Contactanos</h2>
+                    <p><strong>WhatsApp:</strong> <a href="https://wa.me/542234382695">+542234382695</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:motocom.mdp@gmail.com">motocom.mdp@gmail.com</a></p>
+                    <p><strong>Instagram:</strong> <a href="https://instagram.com/motocom.ar">@motocom.ar</a></p>
+                    <p><strong>Ubicación:</strong> Mar del Plata, Argentina</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="mapa-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12578.177778290321!2d-57.59914808866289!3d-37.98775945836373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9584d9396f1f02c9%3A0x65f7311395a5eb9c!2sAv.%20Col%C3%B3n%205649%2C%20B7604BLG%20Mar%20del%20Plata%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1697989544788!5m2!1ses!2sar"
+                        style="border:0; width: 100%; height: 100%;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="derechoautor">
+            <small>&copy; 2026 <b>Motocom</b> - Todos los Derechos Reservados.</small>
+        </div>
+    </footer>
+
+    <div class="botones-flotantes">
+        <a href="https://wa.me/542234382695" target="_blank" class="boton-flotante whatsapp" title="Contactarnos por WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://instagram.com/motocom.ar" target="_blank" class="boton-flotante instagram" title="Síguenos en Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+
+    <script src="moti.js"></script>
+    <script>
+        const ITEMS_PER_PAGE = 12;
+        let currentPage = 1;
+        let currentFilter = 'todos';
+
+        const filtros = document.querySelectorAll('.filtro-btn');
+        const allCards = Array.from(document.querySelectorAll('.producto-card'));
+        const paginacion = document.getElementById('paginacion');
+
+        function getFilteredCards() {
+            if (currentFilter === 'todos') return allCards;
+            return allCards.filter(c => c.dataset.categoria === currentFilter);
+        }
+
+        function renderPage(page) {
+            const filtered = getFilteredCards();
+            const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+            currentPage = Math.min(Math.max(1, page), totalPages);
+
+            const start = (currentPage - 1) * ITEMS_PER_PAGE;
+            const end = start + ITEMS_PER_PAGE;
+
+            allCards.forEach(c => c.style.display = 'none');
+            filtered.slice(start, end).forEach(c => c.style.display = 'flex');
+
+            renderPaginacion(totalPages);
+        }
+
+        function renderPaginacion(totalPages) {
+            if (totalPages <= 1) {
+                paginacion.innerHTML = '';
+                return;
+            }
+
+            const pages = getPaginaNumeros(currentPage, totalPages);
+            let html = '';
+
+            html += `<button class="pag-btn pag-prev" ${currentPage === 1 ? 'disabled' : ''} onclick="renderPage(${currentPage - 1})">
+                        <i class="fas fa-chevron-left"></i>
+                     </button>`;
+
+            pages.forEach(p => {
+                if (p === '...') {
+                    html += `<span class="pag-ellipsis">…</span>`;
+                } else {
+                    html += `<button class="pag-btn pag-num ${p === currentPage ? 'active' : ''}" onclick="renderPage(${p})">${p}</button>`;
+                }
+            });
+
+            html += `<button class="pag-btn pag-next" ${currentPage === totalPages ? 'disabled' : ''} onclick="renderPage(${currentPage + 1})">
+                        <i class="fas fa-chevron-right"></i>
+                     </button>`;
+
+            paginacion.innerHTML = html;
+        }
+
+        function getPaginaNumeros(current, total) {
+            const delta = 2;
+            const range = [];
+            const result = [];
+
+            for (let i = Math.max(1, current - delta); i <= Math.min(total, current + delta); i++) {
+                range.push(i);
+            }
+
+            if (range[0] > 1) {
+                result.push(1);
+                if (range[0] > 2) result.push('...');
+            }
+
+            range.forEach(p => result.push(p));
+
+            if (range[range.length - 1] < total) {
+                if (range[range.length - 1] < total - 1) result.push('...');
+                result.push(total);
+            }
+
+            return result;
+        }
+
+        filtros.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filtros.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.categoria;
+                renderPage(1);
+            });
+        });
+
+        renderPage(1);
+    </script>
+</body>
+
+</html>
